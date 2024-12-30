@@ -2,26 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BusStop : MonoBehaviour
-{
-    [SerializeField] Transform routeWaypoint;
-
+public class ChoosingRouteTrigger : MonoBehaviour{
     private void OnTriggerEnter(Collider collider){
         if (collider.tag == "Player"){
             BusMovement bus = collider.gameObject.GetComponent<BusMovement>();
-            bus.SetNextRouteWaypoint();
-            bus.SetInBusStop(true);
+            bus.SetIsChoosing(true);
         }
     }
 
     private void OnTriggerExit(Collider collider){
         if (collider.tag == "Player"){
             BusMovement bus = collider.gameObject.GetComponent<BusMovement>();
-            bus.SetInBusStop(false);
+            bus.SetIsChoosing(false);
         }
-    }
-
-    public Transform GetRouteWaypoint(){
-        return routeWaypoint;
     }
 }

@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2851578480008673724}
   - component: {fileID: 1121684824892808624}
+  - component: {fileID: 323012182699007594}
   m_Layer: 0
   m_Name: BusStop
   m_TagString: Untagged
@@ -56,7 +57,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4419185443421364996}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.70710707, z: -0, w: 0.70710653}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 48.019997, y: 0.13430977, z: 19.089994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -79,6 +80,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   routeWaypoint: {fileID: 3780298809996971781}
+--- !u!65 &323012182699007594
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419185443421364996}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 7, y: 2.62, z: 6.75}
+  m_Center: {x: 0.04, y: 1.42, z: 2.66}
 --- !u!1 &8742841475615425246
 GameObject:
   m_ObjectHideFlags: 0
@@ -88,7 +110,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5663141971695928352}
-  - component: {fileID: 36463109510718269}
   m_Layer: 0
   m_Name: TriggerArea
   m_TagString: Untagged
@@ -111,27 +132,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2851578480008673724}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &36463109510718269
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8742841475615425246}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.2, y: 2.62, z: 6.75}
-  m_Center: {x: 0.04, y: 1.42, z: 2.8}
 --- !u!1001 &627542830559489288
 PrefabInstance:
   m_ObjectHideFlags: 0

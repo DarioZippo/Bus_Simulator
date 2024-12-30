@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4710386744780114714}
   - component: {fileID: 4450806795601807231}
+  - component: {fileID: 4329900145062909495}
   m_Layer: 0
   m_Name: Bus
   m_TagString: Untagged
@@ -54,6 +55,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.413354, y: 3.2162495, z: 8.064726}
   m_Center: {x: 0.006435156, y: 1.6285484, z: -0.019057274}
+--- !u!114 &4329900145062909495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3298527340143751871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 3ca5ee2538d6274469118fa338c0c393, type: 3}
+  m_NotificationBehavior: 0
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Bus
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1001 &6679031892515441374
 PrefabInstance:
   m_ObjectHideFlags: 0

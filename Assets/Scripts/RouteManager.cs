@@ -17,9 +17,11 @@ public class RouteManager : MonoBehaviour{
     }
 
     public static RouteManager Instance = null;
+
+    public Action<CrossroadsDirection> OnRouteChanged;
     
     [SerializeField] SerializedDictionary<CrossroadsDirection, Route> routes;
-    [SerializeField] CrossroadsDirection currentRoute = CrossroadsDirection.Up;
+    [SerializeField] CrossroadsDirection currentRoute = CrossroadsDirection.Left;
 
     int currentRouteIndex = 0;
     int nextRouteIndex = 0;
@@ -43,6 +45,19 @@ public class RouteManager : MonoBehaviour{
         nextRouteIndex = (nextRouteIndex + 1) % routeWaypoints.Count;
 
         return result;
+    }
+
+    public void SetRoute(CrossroadsDirection newRoute){
+        if(currentRoute != newRoute){
+            currentRoute = newRoute;
+            nextRouteIndex = 0;
+
+            OnRouteChanged?.Invoke(currentRoute);
+        }
+    }
+
+    public CrossroadsDirection GetRoute(){
+        return currentRoute;
     }
 
     void OnValidate(){

@@ -6,48 +6,68 @@
             "id": "e3979911-2473-488e-89f3-4aacd1424313",
             "actions": [
                 {
-                    "name": "SelectNextRouteWaypoint",
+                    "name": "SelectNextRoute",
                     "type": "Value",
                     "id": "6da5b9c6-64ae-45c5-b4da-49365e08a33b",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Break/Go",
+                    "type": "Button",
+                    "id": "e3911c6f-559c-466a-b36c-b0894ec06c3e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
                 {
-                    "name": "Left/Right",
+                    "name": "WASD",
                     "id": "0cd08243-0484-4473-92c8-64fa4eed52d5",
-                    "path": "1DAxis(whichSideWins=2)",
+                    "path": "2DVector(mode=2)",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectNextRouteWaypoint",
+                    "action": "SelectNextRoute",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "ae74f40d-0ec0-403b-a9c8-96a8ab1713ea",
+                    "name": "Left",
+                    "id": "05611ac7-230c-4f90-9f35-6fa749754421",
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectNextRouteWaypoint",
+                    "action": "SelectNextRoute",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "119d3b97-699e-44e8-9b45-3376dba28ac9",
+                    "name": "Right",
+                    "id": "4d7f2983-4a02-41aa-8b50-fd2e4392c235",
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SelectNextRouteWaypoint",
+                    "action": "SelectNextRoute",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "dbc94963-7098-4d26-aec6-76f369f90a52",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Break/Go",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
