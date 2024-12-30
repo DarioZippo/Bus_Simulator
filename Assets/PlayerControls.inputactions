@@ -1,0 +1,56 @@
+{
+    "name": "PlayerControls",
+    "maps": [
+        {
+            "name": "Bus",
+            "id": "e3979911-2473-488e-89f3-4aacd1424313",
+            "actions": [
+                {
+                    "name": "SelectNextRouteWaypoint",
+                    "type": "Value",
+                    "id": "6da5b9c6-64ae-45c5-b4da-49365e08a33b",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "Left/Right",
+                    "id": "0cd08243-0484-4473-92c8-64fa4eed52d5",
+                    "path": "1DAxis(whichSideWins=2)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectNextRouteWaypoint",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "ae74f40d-0ec0-403b-a9c8-96a8ab1713ea",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectNextRouteWaypoint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "119d3b97-699e-44e8-9b45-3376dba28ac9",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SelectNextRouteWaypoint",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

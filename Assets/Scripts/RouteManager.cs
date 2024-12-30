@@ -1,14 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using AYellowpaper.SerializedCollections;
+
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
 public class RouteManager : MonoBehaviour{
+    [Serializable]
+    public struct Route{
+        public List<Transform> waypoints;
+        public Color color;
+    }
+
     public static RouteManager Instance = null;
     
-    [SerializeField] List<Transform> routeWaypoints = new List<Transform>();
+    [SerializeField] SerializedDictionary<CrossroadsDirection, Route> routes;
+    [SerializeField] CrossroadsDirection currentRoute = CrossroadsDirection.Up;
 
     int currentRouteIndex = 0;
     int nextRouteIndex = 0;
@@ -25,6 +36,8 @@ public class RouteManager : MonoBehaviour{
 
     public Transform GetNextRouteWaypoint(){
         currentRouteIndex = nextRouteIndex;
+
+        var routeWaypoints = routes[currentRoute].waypoints;
         var result = routeWaypoints[currentRouteIndex];
 
         nextRouteIndex = (nextRouteIndex + 1) % routeWaypoints.Count;
@@ -33,10 +46,20 @@ public class RouteManager : MonoBehaviour{
     }
 
     void OnValidate(){
-        for (int i = 0; i < routeWaypoints.Count; i++){
-            BusStop busStop = routeWaypoints[i].GetComponent<BusStop>();
-            if(busStop){
-                routeWaypoints[i] = busStop.GetRouteWaypoint();
+        //Debug.Log("Validate");
+        foreach (KeyValuePair<CrossroadsDirection, Route> keyValuePair in routes){
+            //Debug.Log("Direction" + keyValuePair.Key + ", with " + keyValuePair.Value.waypoints.Count + " elements");
+            var routeWaypoints = keyValuePair.Value.waypoints;
+            if(routeWaypoints == null)
+                return;
+                
+            for (int i = 0; i < routeWaypoints.Count; i++){
+                if(routeWaypoints[i]){
+                    BusStop busStop = routeWaypoints[i].GetComponent<BusStop>();
+                    if(busStop){
+                        routeWaypoints[i] = busStop.GetRouteWaypoint();
+                    }
+                }
             }
         }
     }
@@ -48,21 +71,27 @@ public class RouteManager : MonoBehaviour{
 
         int currentIndex = 0;
 
-        foreach (Transform routeWaypoint in routeWaypoints){
-            Color currentColor = currentIndex == currentRouteIndex ? Color.green : Color.red;
-
-            if(routeWaypoint){
-                Handles.DrawBezier(
-                    transform.position,
-                    routeWaypoint.position,
-                    transform.position - offset,
-                    routeWaypoint.position + offset,
-                    currentColor,
-                    EditorGUIUtility.whiteTexture,
-                    3f
-                );
+        foreach (KeyValuePair<CrossroadsDirection, Route> keyValuePair in routes){
+            var routeCrossroadsDirection = keyValuePair.Key;
+            var routeColor = keyValuePair.Value.color;
+            var routeWaypoints = keyValuePair.Value.waypoints;
+            foreach (Transform routeWaypoint in routeWaypoints){
+                Color currentColor = currentRoute == routeCrossroadsDirection && currentIndex == currentRouteIndex ? Color.green : routeColor;
+                
+                if(routeWaypoint){
+                    Handles.DrawBezier(
+                        transform.position,
+                        routeWaypoint.position,
+                        transform.position - offset,
+                        routeWaypoint.position + offset,
+                        currentColor,
+                        EditorGUIUtility.whiteTexture,
+                        3f
+                    );
+                }
+                currentIndex++;
             }
-            currentIndex++;
+            currentIndex = 0;
         }
     }
     #endif
