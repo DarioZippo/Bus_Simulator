@@ -4,7 +4,8 @@ using UnityEngine;
 using System;
 using AYellowpaper.SerializedCollections;
 
-
+// Direttive da pre-processore per l'uso di Handles nell'OnDrawGizmos
+// Gli Handles non sono Buildabili, quindi li compilo solo in Editor, come l'inclusione della libreria UnityEditor
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -13,6 +14,7 @@ public class RouteManager : MonoBehaviour{
     [Serializable]
     public struct Route{
         public List<Transform> waypoints;
+        //Il colore delle linee di debug che punteranno ai BusStop di questa tratta
         public Color color;
     }
 
@@ -26,6 +28,7 @@ public class RouteManager : MonoBehaviour{
     int currentRouteIndex = 0;
     int nextRouteIndex = 0;
 
+    //Singleton Pattern
     void Awake(){
         if(Instance){
             Destroy(this);
@@ -36,6 +39,7 @@ public class RouteManager : MonoBehaviour{
         }
     }
 
+    //Avanzamento ciclico tra i BusStop dell'attuale tratta
     public Transform GetNextRouteWaypoint(){
         currentRouteIndex = nextRouteIndex;
 
@@ -60,10 +64,10 @@ public class RouteManager : MonoBehaviour{
         return currentRoute;
     }
 
+    //Funzione che controlla ad ogni modifica via editor l'attuale stato delle tratte
+    //Se tra i Waypoints ci sono BusStop, ne ricava automaticamente il punto in cui il bus dovrebbe passare
     void OnValidate(){
-        //Debug.Log("Validate");
         foreach (KeyValuePair<CrossroadsDirection, Route> keyValuePair in routes){
-            //Debug.Log("Direction" + keyValuePair.Key + ", with " + keyValuePair.Value.waypoints.Count + " elements");
             var routeWaypoints = keyValuePair.Value.waypoints;
             if(routeWaypoints == null)
                 return;
@@ -79,6 +83,9 @@ public class RouteManager : MonoBehaviour{
         }
     }
 
+    //Viene compilato se in editor per via degli Handles
+    //Mostra costamente a video delle linee curve per mostrare l'attuale stato delle tratte registrate
+    //Le tratte si distinguono dal colore diverso di tali linee, ad eccezione del target attuale del bus, è che colorato di verde
     #if UNITY_EDITOR
     void OnDrawGizmos(){
         Vector3 offset = Vector3.up * 10f;

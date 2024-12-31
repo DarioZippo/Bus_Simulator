@@ -1,23 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BusStop : MonoBehaviour
-{
+public class BusStop : MonoBehaviour{
+    static public Action OnPlayerEnter;
+    static public Action OnPlayerExit;
+
     [SerializeField] Transform routeWaypoint;
 
     private void OnTriggerEnter(Collider collider){
         if (collider.tag == "Player"){
-            BusMovement bus = collider.gameObject.GetComponent<BusMovement>();
-            bus.SetNextRouteWaypoint();
-            bus.SetInBusStop(true);
+            OnPlayerEnter?.Invoke();
         }
     }
 
     private void OnTriggerExit(Collider collider){
         if (collider.tag == "Player"){
-            BusMovement bus = collider.gameObject.GetComponent<BusMovement>();
-            bus.SetInBusStop(false);
+            OnPlayerExit?.Invoke();
         }
     }
 

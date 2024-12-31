@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-// This script acts as a single point for all other scripts to get
-// the current input from. It uses Unity's new Input System and
-// functions should be mapped to their corresponding controls
-// using a PlayerInput component with Unity Events.
+// Questo componente fa da punto di accesso generale per i valori dati in input dal giocatore
+// mappando le funzioni con gli eventi del NewInputSystem
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerInputManager : MonoBehaviour{
@@ -35,9 +33,12 @@ public class PlayerInputManager : MonoBehaviour{
         if (Mathf.Abs(input.x) > Mathf.Abs(input.y)){
             return input.x > 0 ? CrossroadsDirection.Right : CrossroadsDirection.Left;
         }
+        /*
         else{
             return input.y > 0 ? CrossroadsDirection.Up : direction;
         }
+        */
+        return direction;
     }
 
     public CrossroadsDirection GetDirection(){
